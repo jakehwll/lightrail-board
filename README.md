@@ -71,3 +71,10 @@ cp .env.example .env.local
 # Run the application
 bun dev
 ```
+
+## Routes
+
+| Route | Description | Preview |
+| --- | --- | --- |
+| `/board` | Displays a live board with the latest departures. | ![Board Screenshot](./.github/assets/preview.png) |
+| `/kindle` | Displays a live board with the latest departures optimised for e-Ink/Kindle display, refreshed automatically every 30 seconds. | `...` |
