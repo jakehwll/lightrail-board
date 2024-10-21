@@ -1,0 +1,10 @@
+version: "3.9"
+
+services:
+  lightrail-board:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - API_KEY=${API_KEY}
+      - STOP_ID=${STOP_ID}
