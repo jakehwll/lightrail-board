@@ -105,7 +105,7 @@ export const Grid = ({
     justify-content: flex-end;
   `;
 
-  const TIME_NOW = new Date();
+  const TIME_NOW = new Date(Date.now());
 
   return (
     <div className={gridClass}>

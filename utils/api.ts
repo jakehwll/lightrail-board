@@ -17,7 +17,7 @@ export const fetchStopEvents = async () => {
     },
   };
 
-  const refreshedAt = toZonedTime(new Date(), "Australia/Sydney");
+  const refreshedAt = new Date(Date.now());
   const urlParams = new URLSearchParams({
     // variables
     name_dm: TFNSW_STOP_ID,
