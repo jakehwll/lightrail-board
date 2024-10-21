@@ -18,9 +18,9 @@ Specifically I created this project to both gain an understanding of the Transpo
 
 ![Lightrail Board Screenshot](./.github/assets/preview.png)
 
-## Quickstart
+## Quickstart (Local)
 
-The most convenient way to use this repository is to take the `docker-compose.yml` provided.
+The most convenient way to use this repository is to use a `docker-compose.yml`.
 
 - [Docker](https://www.docker.com/)
 - [Docker Compose](https://docs.docker.com/compose/)
@@ -29,16 +29,29 @@ The most convenient way to use this repository is to take the `docker-compose.ym
 > [!WARNING]
 > The fonts used in this project, specifically the NewFrank font, are not free for commercial use.
 > These are BYO fonts, and are not included in this repository.
+   
+1. Create a `docker-compose.yaml`.
+   ```yaml
+   version: "3.9"
+   services:
+     lightrail_board:
+       container_name: lightrail-board
+       image: ghcr.io/jakehwll/lightrail-board:latest
+       environment:
+         - API_KEY=${API_KEY:-}
+         - STOP_ID=${STOP_ID:-}
+       # If you have `NewFrank-*.(woff|woff2)` locally you can set them up to serve here.
+       # volumes:
+       #   - ${ASSET_DIR:-}:/usr/src/app/static
+       ports:
+         - "${PORT:-3000}:3000"
+       restart: unless-stopped
+   ```
 
-```sh
-# Install docker and docker-compose
-curl -fsSL https://get.docker.com -o get-docker.sh
-sh get-docker.sh
-# Run the docker-compose
-docker-compose up
-```
-
-This will start the application on port 3000.
+2. Run the newly created `docker-compose.yaml`
+   ```sh
+   docker-compose up -d
+   ```
 
 ## Development
 
