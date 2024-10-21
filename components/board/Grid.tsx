@@ -1,7 +1,7 @@
-import { format, formatDistance } from "date-fns";
-import { enUS } from "date-fns/locale";
+import { format } from "date-fns";
 import { css } from "hono/css";
 import { type PropsWithChildren } from "hono/jsx";
+import { Time } from "../Time";
 
 const ServiceId = ({
   children,
@@ -63,48 +63,17 @@ const ServiceTime = ({
     font-weight: 500;
   `;
 
-  const time = format(new Date(timeString), "HH:mm");
-  const now = format(new Date(), "HH:mm");
-
-  if ( time === now ) {
-    return <div className={root}>Now</div>;
-  } else {
-    return (
-      <div className={root}>
-        {formatDistance(new Date(timeString), new Date(), {
-          locale: {
-            ...enUS,
-            formatDistance: (unit: string, count: number) => {
-              switch (true) {
-                case unit === "xDays":
-                  return `${count} day`;
-                case unit === "xHours":
-                case unit === "aboutXHours":
-                  return `${count} hour`;
-                case unit === "xMinutes":
-                case unit === "lessThanXMinutes":
-                  return `${count} min`;
-                case unit === "xMonths":
-                  return `${count} month`;
-                case unit === "xSeconds":
-                  return "Now";
-                case unit === "xYears":
-                  return `${count} y`;
-              }
-              return `${count} ???`;
-            },
-          },
-        })}
-      </div>
-    );
-  }
-
+  return (
+    <div className={root}>
+      <Time timeString={timeString} />
+    </div>
+  );
 };
 
 export const Grid = ({
-  data,
+  events,
 }: {
-  data: {
+  events: {
     departureTimePlanned: string;
     transportation: {
       disassembledName: string;
@@ -143,7 +112,7 @@ export const Grid = ({
       <div className={headerClass}>Service</div>
       <div className={headerClass}>Travelling to</div>
       <div className={headerClassTime}>Time {format(TIME_NOW, "hh:mm")}</div>
-      {data.map((time, i) => (
+      {events.map((time, i) => (
         <>
           <ServiceId size={i === 0 ? "large" : "small"} odd={i % 2 === 0}>
             {time.transportation.disassembledName}

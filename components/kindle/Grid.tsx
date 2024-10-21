@@ -1,57 +1,13 @@
-import { format, formatDistance } from "date-fns";
 import { formatInTimeZone } from "date-fns-tz";
-import { enUS } from "date-fns/locale";
 import { css } from "hono/css";
-
-const ServiceTime = ({
-  timeString
-}: {
-  timeString: string;
-}) => {
-
-  const time = format(new Date(timeString), "HH:mm");
-  const now = format(new Date(), "HH:mm");
-
-  if (time === now) {
-    return <>Now</>;
-  } else {
-    return (
-      <>
-        {formatDistance(new Date(timeString), new Date(), {
-          locale: {
-            ...enUS,
-            formatDistance: (unit: string, count: number) => {
-              switch (true) {
-                case unit === "xDays":
-                  return `${count} day`;
-                case unit === "xHours":
-                case unit === "aboutXHours":
-                  return `${count} hour`;
-                case unit === "xMinutes":
-                case unit === "lessThanXMinutes":
-                  return `${count} min`;
-                case unit === "xMonths":
-                  return `${count} month`;
-                case unit === "xSeconds":
-                  return "Now";
-                case unit === "xYears":
-                  return `${count} y`;
-              }
-              return `${count} ???`;
-            },
-          },
-        })}
-      </>
-    );
-  }
-};
+import { Time } from "../Time";
 
 export const Grid = ({
   time,
-  data,
+  events,
 }: {
-  time: Date,
-  data: {
+  time: Date;
+  events: {
     departureTimePlanned: string;
     transportation: {
       disassembledName: string;
@@ -66,14 +22,14 @@ export const Grid = ({
     overflow: hidden;
     border-collapse: collapse;
   `;
-  
+
   const tableHeader = css`
     background: black;
     color: white;
     font-weight: normal;
     text-align: left;
     padding: 1rem;
-  `
+  `;
 
   const tableHeaderRight = css`
     ${tableHeader}
@@ -88,11 +44,11 @@ export const Grid = ({
   const serviceDisassembledName = css`
     ${tableData}
     width: 50px;
-  `
+  `;
 
   const serviceDestinationName = css`
     ${tableData}
-  `
+  `;
 
   const serviceDepartureTime = css`
     ${tableData}
@@ -127,7 +83,7 @@ export const Grid = ({
             </th>
           </tr>
         </thead>
-        {data.map((time, i) => (
+        {events.map((time, i) => (
           <tr>
             <td
               className={
@@ -148,7 +104,7 @@ export const Grid = ({
                 i === 0 ? serviceLgDepartureTime : serviceDepartureTime
               }
             >
-              <ServiceTime timeString={time.departureTimePlanned} />
+              <Time timeString={time.departureTimePlanned} />
             </td>
           </tr>
         ))}

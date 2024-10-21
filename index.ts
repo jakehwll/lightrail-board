@@ -13,6 +13,8 @@ app.route("/board", board);
 
 app.get("/static/*", serveStatic({ root: "./" }));
 
+console.log(`Listening on port ${process.env.PORT || 3000}`);
+
 export default {
   port: 3000,
   fetch: app.fetch,
