@@ -1,6 +1,6 @@
 import { Hono } from "hono";
-import { Layout } from "../components/Layout";
-import { Grid } from "../components/Grid";
+import { Layout } from "../components/board/Layout";
+import { Grid } from "../components/board/Grid";
 import { format } from "date-fns";
 
 export const board = new Hono();

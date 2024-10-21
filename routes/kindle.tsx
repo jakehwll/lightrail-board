@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import { Grid } from "../components/kindle/Grid";
 import { format } from "date-fns";
-import { Layout } from "../components/Layout";
+import { Layout } from "../components/board/Layout";
 import { formatInTimeZone, toZonedTime } from "date-fns-tz";
 
 export const kindle = new Hono();
