@@ -91,7 +91,6 @@ const ServiceTime = ({
                 case unit === "xYears":
                   return `${count} y`;
               }
-              console.log(unit)
               return `${count} ???`;
             },
           },

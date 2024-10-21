@@ -27,11 +27,6 @@ kindle.get("/", async (c) => {
     },
   };
 
-  console.log(
-    formatInTimeZone(new Date(), "Australia/Sydney", "yyyyMMdd"),
-    formatInTimeZone(new Date(), "Australia/Sydney", "HHmm")
-  )
-
   const datetimeNow = toZonedTime(new Date(), "Australia/Sydney");
   const urlParams = new URLSearchParams({
     // variables
