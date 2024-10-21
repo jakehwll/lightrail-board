@@ -28,6 +28,7 @@ The most convenient way to use this repository is to use a `docker-compose.yml`.
 
 > [!WARNING]
 > The fonts used in this project, specifically the NewFrank font, are not free for commercial use.
+> 
 > These are BYO fonts, and are not included in this repository.
    
 1. Create a `docker-compose.yaml`.
@@ -38,8 +39,10 @@ The most convenient way to use this repository is to use a `docker-compose.yml`.
        container_name: lightrail-board
        image: ghcr.io/jakehwll/lightrail-board:latest
        environment:
-         - API_KEY=${API_KEY:-}
-         - STOP_ID=${STOP_ID:-}
+         - TFNSW_API_KEY=${TFNSW_API_KEY:-}
+         - TFNSW_STOP_ID=${TFNSW_STOP_ID:-}
+         # If you want to ignore certain stop destinations, you can do so here.
+         # - TFNSW_STOP_IGNORED="1234,5678"
        # If you have `NewFrank-*.(woff|woff2)` locally you can set them up to serve here.
        # volumes:
        #   - ${ASSET_DIR:-}:/usr/src/app/static
