@@ -76,5 +76,5 @@ bun dev
 
 | Route | Description | Preview |
 | --- | --- | --- |
-| `/board` | Displays a live board with the latest departures. | ![Board Screenshot](./.github/assets/preview.png) |
-| `/kindle` | Displays a live board with the latest departures optimised for e-Ink/Kindle display, refreshed automatically every 30 seconds. | `...` |
+| `/board` | Displays a live board with the latest departures, requires a refresh of the page to update. | ![Board Screenshot](./.github/assets/preview.png) |
+| `/kindle` | Displays a live board with the latest departures optimised for e-Ink/Kindle display, refreshed automatically every 30 seconds. | ![Kindle Screenshot](./.github/assets/preview-kindle.png) |
